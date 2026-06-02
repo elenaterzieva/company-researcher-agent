@@ -9,12 +9,12 @@ Each agent:
 Total per agent: ~2 Haiku calls + 6 Tavily results
 """
 from langchain_core.messages import HumanMessage
-from backend.services.llm import get_haiku
+from backend.services.llm import get_fast_llm
 from backend.services.search import search
 
 
 async def run_research_agent(company: str, website: str, query_prompt: str, summarize_prompt: str) -> str:
-    llm = get_haiku()
+    llm = get_fast_llm()
 
     # Step 1: generate queries
     query_response = await llm.ainvoke([HumanMessage(content=query_prompt.format(company=company, website=website))])

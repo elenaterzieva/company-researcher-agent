@@ -4,12 +4,12 @@ Flags inconsistencies or gaps. Adds notes to state but does NOT block delivery.
 """
 from langchain_core.messages import HumanMessage
 from backend.classes.state import ResearchState
-from backend.services.llm import get_sonnet
+from backend.services.llm import get_smart_llm
 from backend.prompts import VALIDATOR_PROMPT
 
 
 async def validator_node(state: ResearchState) -> ResearchState:
-    llm = get_sonnet()
+    llm = get_smart_llm()
     prompt = VALIDATOR_PROMPT.format(
         company=state["company"],
         report=state.get("report", ""),

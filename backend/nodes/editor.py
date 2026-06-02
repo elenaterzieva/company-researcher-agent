@@ -4,12 +4,12 @@ Compiles all section briefs into a polished final report.
 """
 from langchain_core.messages import SystemMessage, HumanMessage
 from backend.classes.state import ResearchState
-from backend.services.llm import get_sonnet
+from backend.services.llm import get_smart_llm
 from backend.prompts import EDITOR_SYSTEM_MESSAGE, EDITOR_COMPILE_PROMPT
 
 
 async def editor_node(state: ResearchState) -> ResearchState:
-    llm = get_sonnet()
+    llm = get_smart_llm()
     prompt = EDITOR_COMPILE_PROMPT.format(
         company=state["company"],
         company_brief=state.get("company_brief", ""),

@@ -5,7 +5,7 @@ This is where the parallel fan-out happens before the final editor pass.
 import asyncio
 from langchain_core.messages import HumanMessage
 from backend.classes.state import ResearchState
-from backend.services.llm import get_haiku
+from backend.services.llm import get_fast_llm
 from backend.prompts import (
     COMPANY_BRIEF_PROMPT,
     INDUSTRY_BRIEF_PROMPT,
@@ -15,7 +15,7 @@ from backend.prompts import (
 
 
 async def _generate_brief(prompt: str) -> str:
-    llm = get_haiku()
+    llm = get_fast_llm()
     response = await llm.ainvoke([HumanMessage(content=prompt)])
     return response.content.strip()
 
